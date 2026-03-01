@@ -59,55 +59,68 @@ app.use(
  * ===============================
  */
 
-app.all("/payment-return", async (req, res) => {
+// app.all("/payment-return", async (req, res) => {
+
+//   console.log("=================================");
+//   console.log("PAYMENT RETURN HIT");
+//   console.log("METHOD:", req.method);
+//   console.log("=================================");
+
+//   try {
+
+//     const orderId = global.lastOrderId;
+//      console.log("STATUS TOKEN USED:", process.env.USER_TOKEN); 
+
+//     if (!orderId) {
+//       console.log("No order ID found");
+//       return res.redirect("/failure.html");
+//     }
+
+//     console.log("Verifying order:", orderId);
+
+//     // ✅ Use URLSearchParams (no FormData issues)
+//     const response = await fetch(
+//       "https://silver-hawk-998279.hostingersite.com/api/check-order-status",
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/x-www-form-urlencoded"
+//         },
+//         body: new URLSearchParams({
+//           user_token: process.env.USER_TOKEN,
+//           order_id: orderId
+//         })
+//       }
+//     );
+
+//     const data = await response.json();
+
+//     console.log("VERIFY RESPONSE:", data);
+
+//     if (data.status === "COMPLETED") {
+//       return res.redirect(`/success.html?order_id=${orderId}`);
+//     }
+
+//     return res.redirect(`/failure.html?order_id=${orderId}`);
+
+//   } catch (error) {
+
+//     console.error("RETURN ROUTE ERROR:", error);
+//     return res.redirect("/failure.html");
+//   }
+// });
+app.all("/payment-return", (req, res) => {
 
   console.log("=================================");
   console.log("PAYMENT RETURN HIT");
   console.log("METHOD:", req.method);
   console.log("=================================");
 
-  try {
+  console.log("QUERY:", req.query);
+  console.log("BODY:", req.body);
 
-    const orderId = global.lastOrderId;
-     console.log("STATUS TOKEN USED:", process.env.USER_TOKEN); 
-
-    if (!orderId) {
-      console.log("No order ID found");
-      return res.redirect("/failure.html");
-    }
-
-    console.log("Verifying order:", orderId);
-
-    // ✅ Use URLSearchParams (no FormData issues)
-    const response = await fetch(
-      "https://silver-hawk-998279.hostingersite.com/api/check-order-status",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: new URLSearchParams({
-          user_token: process.env.USER_TOKEN,
-          order_id: orderId
-        })
-      }
-    );
-
-    const data = await response.json();
-
-    console.log("VERIFY RESPONSE:", data);
-
-    if (data.status === "COMPLETED") {
-      return res.redirect(`/success.html?order_id=${orderId}`);
-    }
-
-    return res.redirect(`/failure.html?order_id=${orderId}`);
-
-  } catch (error) {
-
-    console.error("RETURN ROUTE ERROR:", error);
-    return res.redirect("/failure.html");
-  }
+  // Just redirect to homepage (no verification)
+  return res.redirect("/?payment=processing");
 });
 
 /**
