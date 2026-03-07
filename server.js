@@ -121,7 +121,7 @@ app.all("/payment-return", (req, res) => {
 
   // Just redirect to homepage (no verification)
   return res.redirect("/?payment=processing");
-});
+});                         
 
 /**
  * ===============================

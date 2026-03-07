@@ -1,330 +1,262 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Cart | WesDiva MODERN LUXURY</title>
+<title>Cart | WesternDiva MODERN LUXURY</title>
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
 
-  <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          brand: {
-            bg: "#FFFFFF",
-            cream: "#F8F8F8",
-            pink: "#E91E63",
-            purple: "#9C27B0",
-            green: "#4CAF50",
-            dark: "#333333",
-            charcoal: "#1A1A1A",
-            border: "#E0E0E0"
-          }
-        }
-      }
-    }
-  }
-  </script>
+<script>
+tailwind.config = {
+theme:{
+extend:{
+colors:{
+brand:{
+bg:"#FFFFFF",
+cream:"#F8F8F8",
+pink:"#E91E63",
+purple:"#9C27B0",
+green:"#4CAF50",
+dark:"#333333",
+charcoal:"#1A1A1A",
+border:"#E0E0E0"
+}
+}
+}
+}
+}
+</script>
 </head>
 
 <body class="bg-brand-bg text-brand-dark">
 
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 <header class="bg-brand-charcoal text-white">
 
-  <div class="
-    max-w-7xl mx-auto
-    flex items-center
-    justify-between
-    px-8 py-4
-  ">
+<div class="max-w-7xl mx-auto flex items-center justify-between px-8 py-4">
 
-    <!-- Logo -->
-    <h1 class="
-      text-2xl font-bold
-      tracking-wider
-      cursor-pointer
-    "
-    onclick="window.location.href='/'" style="background: linear-gradient(45deg, #E91E63, #9C27B0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
-      WesDiva
-      <span class="text-black text-lg font-light">MODERN LUXURY</span>
-    </h1>
+<h1 class="text-2xl font-bold tracking-wider cursor-pointer"
+onclick="window.location.href='/'"
+style="background: linear-gradient(45deg,#E91E63,#9C27B0);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;">
 
-    <!-- Navigation -->
-    <nav class="
-      hidden md:flex
-      space-x-8
-      text-sm font-medium
-    ">
+WesternDiva
+<span class="text-black text-lg font-light">MODERN LUXURY</span>
 
-      <a href="/category.html?cat=Clothing"
-        class="hover:text-gray-300">Clothing</a>
+</h1>
 
-      <a href="/category.html?cat=Ethnics"
-        class="hover:text-gray-300">Ethnics</a>
+<nav class="hidden md:flex space-x-8 text-sm font-medium">
 
-      <a href="/category.html?cat=Footwear"
-        class="hover:text-gray-300">Footwear</a>
+<a href="/category.html?cat=Clothing" class="hover:text-gray-300">Clothing</a>
+<a href="/category.html?cat=Ethnics" class="hover:text-gray-300">Ethnics</a>
+<a href="/category.html?cat=Footwear" class="hover:text-gray-300">Footwear</a>
+<a href="/category.html?cat=Grooming" class="hover:text-gray-300">Grooming</a>
+<a href="/category.html?cat=Watches" class="hover:text-gray-300">Watches</a>
+<a href="/category.html?cat=Accessories" class="hover:text-gray-300">Accessories</a>
+<a href="/about.html" class="hover:text-gray-300">About Us</a>
 
-      <a href="/category.html?cat=Grooming"
-        class="hover:text-gray-300">Grooming</a>
+</nav>
 
-      <a href="/category.html?cat=Watches"
-        class="hover:text-gray-300">Watches</a>
+<a href="/cart.html"
+class="border border-white px-4 py-2 rounded-lg bg-white text-black">
+Cart 🛒
+</a>
 
-      <a href="/category.html?cat=Accessories"
-        class="hover:text-gray-300">Accessories</a>
-
-      <a href="/bulk-orders.html"
-        class="hover:text-gray-300">Bulk Orders</a>
-
-      <a href="/about.html"
-        class="hover:text-gray-300">About Us</a>
-
-    </nav>
-
-    <!-- Cart -->
-    <a href="/cart.html"
-      class="
-        border border-white
-        px-4 py-2
-        rounded-lg
-        bg-white text-black
-      ">
-      Cart 🛒
-    </a>
-
-  </div>
-
+</div>
 </header>
-<!-- =============== HEADER END =============== -->
 
 
-<!-- ================= PAGE ================= -->
+<!-- PAGE -->
 <div class="max-w-6xl mx-auto p-8">
 
-  <h1 class="text-3xl font-light mb-8" style="color: #4CAF50;">
-    Your Cart
-  </h1>
+<h1 class="text-3xl font-light mb-8" style="color:#4CAF50;">
+Your Cart
+</h1>
 
-  <!-- Cart Items -->
-  <div id="cartContainer"
-    class="space-y-4">
-  </div>
+<div id="cartContainer" class="space-y-4"></div>
 
-  <!-- Total -->
-  <h2 id="total"
-    class="text-xl font-semibold mt-6">
-  </h2>
+<h2 id="total" class="text-xl font-semibold mt-6"></h2>
 
-  <!-- Checkout -->
-  <a href="/checkout.html"
-    class="
-      inline-block
-      mt-6
-      bg-brand-pink
-      text-white
-      px-6 py-3
-      rounded-lg
-      hover:bg-brand-purple
-      transition
-    ">
-    Proceed to Checkout
-  </a>
+<a href="/checkout.html"
+class="inline-block mt-6 bg-brand-pink text-white px-6 py-3 rounded-lg hover:bg-brand-purple transition">
+Proceed to Checkout
+</a>
 
 </div>
 
 
 <script>
 
-/**
- * Load cart
- */
 let cart =
-  JSON.parse(
-    localStorage.getItem("cart")
-  ) || [];
+JSON.parse(localStorage.getItem("cart")) || [];
 
-/**
- * Save cart
- */
-function saveCart() {
-
-  localStorage.setItem(
-    "cart",
-    JSON.stringify(cart)
-  );
+function saveCart(){
+localStorage.setItem("cart",JSON.stringify(cart));
 }
 
-/**
- * Render cart
- */
-function renderCart() {
+function renderCart(){
 
-  const container =
-    document.getElementById(
-      "cartContainer"
-    );
+const container = document.getElementById("cartContainer");
 
-  container.innerHTML = "";
+container.innerHTML = "";
 
-  let total = 0;
+let total = 0;
 
-  if (cart.length === 0) {
+if(cart.length === 0){
 
-    container.innerHTML =
-      "<p>Cart is empty</p>";
+container.innerHTML = "<p>Cart is empty</p>";
+document.getElementById("total").innerText = "";
+return;
 
-    document.getElementById(
-      "total"
-    ).innerText = "";
-
-    return;
-  }
-
-  cart.forEach((item, index) => {
-
-    const itemTotal =
-      item.price * item.qty;
-
-    total += itemTotal;
-
-    container.innerHTML += `
-
-      <div class="
-        flex justify-between
-        items-center
-        bg-brand-cream
-        border border-brand-border
-        p-4 rounded-lg
-      ">
-
-        <!-- Product Info -->
-        <div class="
-          flex items-center gap-4
-          w-1/2
-        ">
-
-          <img src="${item.image}"
-            class="
-              w-16 h-16
-              object-cover
-              rounded
-            ">
-
-          <div>
-            <h3 class="font-medium">
-              ${item.name}
-            </h3>
-
-            <p class="text-brand-pink">
-              ₹${item.price}
-            </p>
-          </div>
-
-        </div>
-
-        <!-- Qty Controls -->
-        <div class="
-          flex items-center gap-3
-        ">
-
-          <button
-            onclick="decreaseQty(${index})"
-            class="
-              px-3 py-1
-              bg-brand-border
-              rounded
-            ">
-            −
-          </button>
-
-          <span class="font-medium">
-            ${item.qty}
-          </span>
-
-          <button
-            onclick="increaseQty(${index})"
-            class="
-              px-3 py-1
-              bg-brand-pink
-              text-white
-              rounded
-            ">
-            +
-          </button>
-
-        </div>
-
-        <!-- Remove -->
-        <button
-          onclick="removeItem(${index})"
-          class="
-            text-red-600
-            font-medium
-          ">
-          Remove
-        </button>
-
-      </div>
-
-    `;
-  });
-
-  document.getElementById(
-    "total"
-  ).innerText =
-    "Total: ₹" + total;
 }
 
+cart.forEach((item,index)=>{
 
-/**
- * Increase qty
- */
-function increaseQty(i) {
+const itemTotal = item.price * item.qty;
+total += itemTotal;
 
-  cart[i].qty += 1;
+container.innerHTML += `
 
-  saveCart();
-  renderCart();
+<div class="flex justify-between items-center bg-brand-cream border border-brand-border p-4 rounded-lg">
+
+<div class="flex items-center gap-4 w-1/2">
+
+<img src="${item.image}" class="w-16 h-16 object-cover rounded">
+
+<div>
+<h3 class="font-medium">${item.name}</h3>
+<p class="text-brand-pink">₹${item.price}</p>
+</div>
+
+</div>
+
+<div class="flex items-center gap-3">
+
+<button onclick="decreaseQty(${index})"
+class="px-3 py-1 bg-brand-border rounded">
+−
+</button>
+
+<span class="font-medium">${item.qty}</span>
+
+<button onclick="increaseQty(${index})"
+class="px-3 py-1 bg-brand-pink text-white rounded">
++
+</button>
+
+</div>
+
+<button onclick="removeItem(${index})"
+class="text-red-600 font-medium">
+Remove
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("total").innerText = "Total: ₹"+total;
+
 }
 
-/**
- * Decrease qty
- */
-function decreaseQty(i) {
-
-  if (cart[i].qty > 1) {
-
-    cart[i].qty -= 1;
-
-  } else {
-
-    cart.splice(i, 1);
-  }
-
-  saveCart();
-  renderCart();
+function increaseQty(i){
+cart[i].qty += 1;
+saveCart();
+renderCart();
 }
 
-/**
- * Remove item
- */
-function removeItem(i) {
+function decreaseQty(i){
 
-  cart.splice(i, 1);
-
-  saveCart();
-  renderCart();
+if(cart[i].qty > 1){
+cart[i].qty -= 1;
+}else{
+cart.splice(i,1);
 }
 
-/**
- * Init
- */
+saveCart();
+renderCart();
+
+}
+
+function removeItem(i){
+cart.splice(i,1);
+saveCart();
+renderCart();
+}
+
 renderCart();
 
 </script>
+
+
+<!-- FOOTER -->
+
+<footer class="bg-brand-cream border-t border-brand-border mt-16">
+
+<div class="max-w-7xl mx-auto px-8 py-12 grid md:grid-cols-4 gap-10 text-sm">
+
+<div>
+
+<h3 class="font-semibold mb-4">ONLINE SHOPPING</h3>
+
+<ul class="space-y-2">
+<li><a href="/category.html?cat=Clothing">Clothing</a></li>
+<li><a href="/category.html?cat=Footwear">Footwear</a></li>
+<li><a href="/category.html?cat=Accessories">Accessories</a></li>
+<li><a href="/category.html?cat=Watches">Watches</a></li>
+<li><a href="/category.html?cat=Grooming">Grooming</a></li>
+</ul>
+
+</div>
+
+
+<div>
+
+<h3 class="font-semibold mb-4">CUSTOMER POLICIES</h3>
+
+<ul class="space-y-2">
+<li><a href="/contact.html">Contact Us</a></li>
+<li><a href="/faq.html">FAQ</a></li>
+<li><a href="/shipping.html">Shipping</a></li>
+<li><a href="/returns.html">Returns</a></li>
+<li><a href="/privacy.html">Privacy Policy</a></li>
+</ul>
+
+</div>
+
+
+<div>
+
+<h3 class="font-semibold mb-4">USEFUL LINKS</h3>
+
+<ul class="space-y-2">
+<li><a href="/about.html">About Us</a></li>
+<li><a href="/bulk-orders.html">Bulk Orders</a></li>
+</ul>
+
+</div>
+
+
+<div>
+
+<h3 class="font-semibold mb-4">SHOP WITH CONFIDENCE</h3>
+
+<p>✔ 100% Original Products</p>
+<p>🔁 Easy 21 day exchanges</p>
+<p>🚚 Cash on Delivery available</p>
+
+</div>
+
+</div>
+
+<div class="border-t border-brand-border text-center py-4 text-sm">
+© 2026 WesternDiva. All rights reserved.
+</div>
+
+</footer>
 
 </body>
 </html>
